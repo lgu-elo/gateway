@@ -1,0 +1,9 @@
+services:
+  auth:
+    host: localhost:8081
+  user:
+    host: localhost:8082
+  project:
+    host: localhost:8083
+  task:
+    host: localhost:8084

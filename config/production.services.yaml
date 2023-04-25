@@ -1,0 +1,9 @@
+services:
+  auth:
+    host: 192.168.0.6:8081
+  user:
+    host: 192.168.0.7:8082
+  project:
+    host: 192.168.0.8:8083
+  task:
+    host: 192.168.0.10:8084

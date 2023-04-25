@@ -1,0 +1,449 @@
+definitions:
+  auth.Credentials:
+    properties:
+      login:
+        type: string
+      password:
+        type: string
+    required:
+    - login
+    - password
+    type: object
+  auth.Creds:
+    properties:
+      login:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+      role:
+        type: string
+    type: object
+  auth.FullCredentials:
+    properties:
+      login:
+        type: string
+      name:
+        type: string
+      password:
+        type: string
+    required:
+    - login
+    - name
+    - password
+    type: object
+  auth.Item:
+    properties:
+      cost:
+        type: number
+      dimension:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      type:
+        type: string
+    required:
+    - cost
+    - dimension
+    - id
+    - name
+    - type
+    type: object
+  auth.ItemDto:
+    properties:
+      cost:
+        type: number
+      dimension:
+        type: string
+      name:
+        type: string
+      type:
+        type: string
+    required:
+    - cost
+    - dimension
+    - name
+    - type
+    type: object
+  auth.User:
+    properties:
+      id:
+        type: integer
+      login:
+        type: string
+      name:
+        type: string
+      role:
+        type: string
+    type: object
+  deal.Deal:
+    properties:
+      amount:
+        type: integer
+      client_name:
+        type: string
+      description:
+        type: string
+      id:
+        type: integer
+      item_id:
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - amount
+    - client_name
+    - description
+    - id
+    - item_id
+    - user_id
+    type: object
+  deal.DealDto:
+    properties:
+      amount:
+        type: integer
+      client_name:
+        type: string
+      description:
+        type: string
+      item_id:
+        type: integer
+      user_id:
+        type: integer
+    required:
+    - amount
+    - client_name
+    - description
+    - item_id
+    - user_id
+    type: object
+info:
+  contact: {}
+  title: Swagger Example API
+  version: "1.0"
+paths:
+  /auth/login:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: User creds to authenticate
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/auth.Credentials'
+      responses:
+        "204":
+          description: User authenticated
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+      summary: Login
+      tags:
+      - auth
+  /auth/register:
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: User creds to register
+        in: body
+        name: credentials
+        required: true
+        schema:
+          $ref: '#/definitions/auth.FullCredentials'
+      responses:
+        "204":
+          description: User created
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+      summary: Register
+      tags:
+      - auth
+  /deals:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/deal.Deal'
+            type: array
+        "500":
+          description: Internal server error
+      summary: get all
+      tags:
+      - deal
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Updating deal
+        in: body
+        name: deal
+        required: true
+        schema:
+          $ref: '#/definitions/deal.Deal'
+      responses:
+        "204":
+          description: Deal updated
+        "500":
+          description: Internal server error
+      summary: update deal
+      tags:
+      - deal
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: create deal
+        in: body
+        name: deal
+        required: true
+        schema:
+          $ref: '#/definitions/deal.DealDto'
+      responses:
+        "201":
+          description: Deal created
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+      summary: create deal
+      tags:
+      - deal
+  /deals/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Deal id
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Deal deleted
+        "500":
+          description: Internal server error
+      summary: delete by id
+      tags:
+      - deal
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Deal id
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/deal.Deal'
+        "400":
+          description: Bad request
+        "404":
+          description: Deal not found
+      summary: get by id
+      tags:
+      - deal
+  /items:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/auth.Item'
+            type: array
+        "500":
+          description: Internal server error
+      summary: get all
+      tags:
+      - item
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Updating user
+        in: body
+        name: item
+        required: true
+        schema:
+          $ref: '#/definitions/auth.Item'
+      responses:
+        "204":
+          description: Item updated
+        "500":
+          description: Internal server error
+      summary: update item
+      tags:
+      - item
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: create request
+        in: body
+        name: item
+        required: true
+        schema:
+          $ref: '#/definitions/auth.ItemDto'
+      responses:
+        "201":
+          description: Item created
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+      summary: create item
+      tags:
+      - item
+  /items/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: Item id
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: Item deleted
+        "500":
+          description: Internal server error
+      summary: delete by id
+      tags:
+      - item
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: Item id
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.Item'
+        "400":
+          description: Bad request
+        "404":
+          description: Item not found
+      summary: get by id
+      tags:
+      - item
+  /users:
+    get:
+      responses:
+        "200":
+          description: OK
+          schema:
+            items:
+              $ref: '#/definitions/auth.User'
+            type: array
+        "500":
+          description: Internal server error
+      summary: get all
+      tags:
+      - user
+    patch:
+      consumes:
+      - application/json
+      parameters:
+      - description: Updating user
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/auth.User'
+      responses:
+        "204":
+          description: User updated
+        "500":
+          description: Internal server error
+      summary: update user
+      tags:
+      - user
+    post:
+      consumes:
+      - application/json
+      parameters:
+      - description: create request
+        in: body
+        name: user
+        required: true
+        schema:
+          $ref: '#/definitions/auth.Creds'
+      responses:
+        "201":
+          description: User created
+        "400":
+          description: Bad request
+        "500":
+          description: Internal server error
+      summary: create user
+      tags:
+      - user
+  /users/{id}:
+    delete:
+      consumes:
+      - application/json
+      parameters:
+      - description: User id
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "204":
+          description: User deleted
+        "500":
+          description: Internal server error
+      summary: delete by id
+      tags:
+      - user
+    get:
+      consumes:
+      - application/json
+      parameters:
+      - description: User id
+        in: body
+        name: id
+        required: true
+        schema:
+          type: integer
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/auth.User'
+        "400":
+          description: Bad request
+        "404":
+          description: User not found
+      summary: get by id
+      tags:
+      - user
+swagger: "2.0"
