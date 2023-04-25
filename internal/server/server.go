@@ -6,12 +6,12 @@ import (
 	"github.com/go-playground/validator/v10"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
-	_ "github.com/lsu-group/crm-api-gateway/docs"
+	_ "github.com/lgu-elo/gateway/docs"
 	"github.com/sirupsen/logrus"
 )
 
-//	@title		Swagger Example API
-//	@version	1.0
+// @title		Swagger Example API
+// @version	1.0
 type CustomValidator struct {
 	validator *validator.Validate
 }

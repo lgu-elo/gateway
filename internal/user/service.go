@@ -3,7 +3,7 @@ package auth
 import (
 	"context"
 
-	"github.com/lsu-group/crm-user/pkg/pb"
+	"github.com/lgu-elo/user/pkg/pb"
 	"github.com/pkg/errors"
 )
 

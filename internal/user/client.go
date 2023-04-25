@@ -1,8 +1,8 @@
 package auth
 
 import (
-	"github.com/lsu-group/crm-api-gateway/internal/config"
-	"github.com/lsu-group/crm-user/pkg/pb"
+	"github.com/lgu-elo/gateway/internal/config"
+	"github.com/lgu-elo/user/pkg/pb"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"

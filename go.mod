@@ -1,4 +1,4 @@
-module github.com/lsu-group/crm-api-gateway
+module github.com/lgu-elo/gateway
 
 go 1.19
 

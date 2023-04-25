@@ -5,7 +5,7 @@ import (
 	"strconv"
 
 	"github.com/labstack/echo/v4"
-	"github.com/lsu-group/crm-user/pkg/pb"
+	"github.com/lgu-elo/user/pkg/pb"
 	"github.com/sirupsen/logrus"
 )
 
