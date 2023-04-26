@@ -5,6 +5,8 @@ go 1.19
 require (
 	github.com/go-playground/validator/v10 v10.11.2
 	github.com/ilyakaznacheev/cleanenv v1.4.2
+	github.com/lgu-elo/auth v0.0.0-20230426213023-3ef1e0097ef5
+	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.8.2
 	github.com/swaggo/swag v1.8.10
@@ -26,7 +28,6 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/leodido/go-urn v1.2.2 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
-	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/swaggo/files v1.0.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
