@@ -5,9 +5,6 @@ go 1.19
 require (
 	github.com/go-playground/validator/v10 v10.11.2
 	github.com/ilyakaznacheev/cleanenv v1.4.2
-	github.com/lsu-group/crm-auth v0.0.0-20230317033013-7dc119e66e26
-	github.com/lsu-group/crm-deal v0.0.0-20230317063154-9c887977f2b6
-	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.8.2
 	github.com/swaggo/swag v1.8.10
@@ -29,6 +26,7 @@ require (
 	github.com/josharian/intern v1.0.0 // indirect
 	github.com/leodido/go-urn v1.2.2 // indirect
 	github.com/mailru/easyjson v0.7.7 // indirect
+	github.com/pkg/errors v0.9.1 // indirect
 	github.com/pmezard/go-difflib v1.0.0 // indirect
 	github.com/swaggo/files v1.0.0 // indirect
 	go.uber.org/atomic v1.10.0 // indirect
@@ -46,8 +44,6 @@ require (
 	github.com/grpc-ecosystem/go-grpc-middleware v1.4.0
 	github.com/labstack/echo/v4 v4.10.2
 	github.com/labstack/gommon v0.4.0 // indirect
-	github.com/lsu-group/crm-item v0.0.0-20230317063142-6bc95b0f9960
-	github.com/lsu-group/crm-user v0.0.0-20230317033043-848c290621b3
 	github.com/mattn/go-colorable v0.1.13 // indirect
 	github.com/mattn/go-isatty v0.0.17 // indirect
 	github.com/swaggo/echo-swagger v1.3.5

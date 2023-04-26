@@ -6,8 +6,8 @@ definitions:
       password:
         type: string
     required:
-    - login
-    - password
+      - login
+      - password
     type: object
   auth.Creds:
     properties:
@@ -29,11 +29,11 @@ definitions:
       password:
         type: string
     required:
-    - login
-    - name
-    - password
+      - login
+      - name
+      - password
     type: object
-  auth.Item:
+  auth.Project:
     properties:
       cost:
         type: number
@@ -46,13 +46,13 @@ definitions:
       type:
         type: string
     required:
-    - cost
-    - dimension
-    - id
-    - name
-    - type
+      - cost
+      - dimension
+      - id
+      - name
+      - type
     type: object
-  auth.ItemDto:
+  auth.ProjectDto:
     properties:
       cost:
         type: number
@@ -63,10 +63,10 @@ definitions:
       type:
         type: string
     required:
-    - cost
-    - dimension
-    - name
-    - type
+      - cost
+      - dimension
+      - name
+      - type
     type: object
   auth.User:
     properties:
@@ -79,7 +79,7 @@ definitions:
       role:
         type: string
     type: object
-  deal.Deal:
+  task.Task:
     properties:
       amount:
         type: integer
@@ -89,19 +89,19 @@ definitions:
         type: string
       id:
         type: integer
-      item_id:
+      project_id:
         type: integer
       user_id:
         type: integer
     required:
-    - amount
-    - client_name
-    - description
-    - id
-    - item_id
-    - user_id
+      - amount
+      - client_name
+      - description
+      - id
+      - project_id
+      - user_id
     type: object
-  deal.DealDto:
+  task.TaskDto:
     properties:
       amount:
         type: integer
@@ -109,16 +109,16 @@ definitions:
         type: string
       description:
         type: string
-      item_id:
+      project_id:
         type: integer
       user_id:
         type: integer
     required:
-    - amount
-    - client_name
-    - description
-    - item_id
-    - user_id
+      - amount
+      - client_name
+      - description
+      - project_id
+      - user_id
     type: object
 info:
   contact: {}
@@ -128,14 +128,14 @@ paths:
   /auth/login:
     post:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: User creds to authenticate
-        in: body
-        name: credentials
-        required: true
-        schema:
-          $ref: '#/definitions/auth.Credentials'
+        - description: User creds to authenticate
+          in: body
+          name: credentials
+          required: true
+          schema:
+            $ref: "#/definitions/auth.Credentials"
       responses:
         "204":
           description: User authenticated
@@ -145,18 +145,18 @@ paths:
           description: Internal server error
       summary: Login
       tags:
-      - auth
+        - auth
   /auth/register:
     post:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: User creds to register
-        in: body
-        name: credentials
-        required: true
-        schema:
-          $ref: '#/definitions/auth.FullCredentials'
+        - description: User creds to register
+          in: body
+          name: credentials
+          required: true
+          schema:
+            $ref: "#/definitions/auth.FullCredentials"
       responses:
         "204":
           description: User created
@@ -166,217 +166,217 @@ paths:
           description: Internal server error
       summary: Register
       tags:
-      - auth
-  /deals:
+        - auth
+  /tasks:
     get:
       responses:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/deal.Deal'
+            projects:
+              $ref: "#/definitions/task.Task"
             type: array
         "500":
           description: Internal server error
       summary: get all
       tags:
-      - deal
+        - task
     patch:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: Updating deal
-        in: body
-        name: deal
-        required: true
-        schema:
-          $ref: '#/definitions/deal.Deal'
+        - description: Updating task
+          in: body
+          name: task
+          required: true
+          schema:
+            $ref: "#/definitions/task.Task"
       responses:
         "204":
-          description: Deal updated
+          description: Task updated
         "500":
           description: Internal server error
-      summary: update deal
+      summary: update task
       tags:
-      - deal
+        - task
     post:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: create deal
-        in: body
-        name: deal
-        required: true
-        schema:
-          $ref: '#/definitions/deal.DealDto'
+        - description: create task
+          in: body
+          name: task
+          required: true
+          schema:
+            $ref: "#/definitions/task.TaskDto"
       responses:
         "201":
-          description: Deal created
+          description: Task created
         "400":
           description: Bad request
         "500":
           description: Internal server error
-      summary: create deal
+      summary: create task
       tags:
-      - deal
-  /deals/{id}:
+        - task
+  /tasks/{id}:
     delete:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: Deal id
-        in: body
-        name: id
-        required: true
-        schema:
-          type: integer
+        - description: Task id
+          in: body
+          name: id
+          required: true
+          schema:
+            type: integer
       responses:
         "204":
-          description: Deal deleted
+          description: Task deleted
         "500":
           description: Internal server error
       summary: delete by id
       tags:
-      - deal
+        - task
     get:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: Deal id
-        in: body
-        name: id
-        required: true
-        schema:
-          type: integer
+        - description: Task id
+          in: body
+          name: id
+          required: true
+          schema:
+            type: integer
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/deal.Deal'
+            $ref: "#/definitions/task.Task"
         "400":
           description: Bad request
         "404":
-          description: Deal not found
+          description: Task not found
       summary: get by id
       tags:
-      - deal
-  /items:
+        - task
+  /projects:
     get:
       responses:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/auth.Item'
+            projects:
+              $ref: "#/definitions/auth.Project"
             type: array
         "500":
           description: Internal server error
       summary: get all
       tags:
-      - item
+        - project
     patch:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: Updating user
-        in: body
-        name: item
-        required: true
-        schema:
-          $ref: '#/definitions/auth.Item'
+        - description: Updating user
+          in: body
+          name: project
+          required: true
+          schema:
+            $ref: "#/definitions/auth.Project"
       responses:
         "204":
-          description: Item updated
+          description: Project updated
         "500":
           description: Internal server error
-      summary: update item
+      summary: update project
       tags:
-      - item
+        - project
     post:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: create request
-        in: body
-        name: item
-        required: true
-        schema:
-          $ref: '#/definitions/auth.ItemDto'
+        - description: create request
+          in: body
+          name: project
+          required: true
+          schema:
+            $ref: "#/definitions/auth.ProjectDto"
       responses:
         "201":
-          description: Item created
+          description: Project created
         "400":
           description: Bad request
         "500":
           description: Internal server error
-      summary: create item
+      summary: create project
       tags:
-      - item
-  /items/{id}:
+        - project
+  /projects/{id}:
     delete:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: Item id
-        in: body
-        name: id
-        required: true
-        schema:
-          type: integer
+        - description: Project id
+          in: body
+          name: id
+          required: true
+          schema:
+            type: integer
       responses:
         "204":
-          description: Item deleted
+          description: Project deleted
         "500":
           description: Internal server error
       summary: delete by id
       tags:
-      - item
+        - project
     get:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: Item id
-        in: body
-        name: id
-        required: true
-        schema:
-          type: integer
+        - description: Project id
+          in: body
+          name: id
+          required: true
+          schema:
+            type: integer
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/auth.Item'
+            $ref: "#/definitions/auth.Project"
         "400":
           description: Bad request
         "404":
-          description: Item not found
+          description: Project not found
       summary: get by id
       tags:
-      - item
+        - project
   /users:
     get:
       responses:
         "200":
           description: OK
           schema:
-            items:
-              $ref: '#/definitions/auth.User'
+            projects:
+              $ref: "#/definitions/auth.User"
             type: array
         "500":
           description: Internal server error
       summary: get all
       tags:
-      - user
+        - user
     patch:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: Updating user
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/auth.User'
+        - description: Updating user
+          in: body
+          name: user
+          required: true
+          schema:
+            $ref: "#/definitions/auth.User"
       responses:
         "204":
           description: User updated
@@ -384,17 +384,17 @@ paths:
           description: Internal server error
       summary: update user
       tags:
-      - user
+        - user
     post:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: create request
-        in: body
-        name: user
-        required: true
-        schema:
-          $ref: '#/definitions/auth.Creds'
+        - description: create request
+          in: body
+          name: user
+          required: true
+          schema:
+            $ref: "#/definitions/auth.Creds"
       responses:
         "201":
           description: User created
@@ -404,18 +404,18 @@ paths:
           description: Internal server error
       summary: create user
       tags:
-      - user
+        - user
   /users/{id}:
     delete:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: User id
-        in: body
-        name: id
-        required: true
-        schema:
-          type: integer
+        - description: User id
+          in: body
+          name: id
+          required: true
+          schema:
+            type: integer
       responses:
         "204":
           description: User deleted
@@ -423,27 +423,27 @@ paths:
           description: Internal server error
       summary: delete by id
       tags:
-      - user
+        - user
     get:
       consumes:
-      - application/json
+        - application/json
       parameters:
-      - description: User id
-        in: body
-        name: id
-        required: true
-        schema:
-          type: integer
+        - description: User id
+          in: body
+          name: id
+          required: true
+          schema:
+            type: integer
       responses:
         "200":
           description: OK
           schema:
-            $ref: '#/definitions/auth.User'
+            $ref: "#/definitions/auth.User"
         "400":
           description: Bad request
         "404":
           description: User not found
       summary: get by id
       tags:
-      - user
+        - user
 swagger: "2.0"

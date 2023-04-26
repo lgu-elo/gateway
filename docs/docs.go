@@ -81,10 +81,10 @@ const docTemplate = `{
                 }
             }
         },
-        "/deals": {
+        "/tasks": {
             "get": {
                 "tags": [
-                    "deal"
+                    "task"
                 ],
                 "summary": "get all",
                 "responses": {
@@ -92,8 +92,8 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/deal.Deal"
+                            "projects": {
+                                "$ref": "#/definitions/task.Task"
                             }
                         }
                     },
@@ -107,23 +107,23 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "deal"
+                    "task"
                 ],
-                "summary": "create deal",
+                "summary": "create task",
                 "parameters": [
                     {
-                        "description": "create deal",
-                        "name": "deal",
+                        "description": "create task",
+                        "name": "task",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/deal.DealDto"
+                            "$ref": "#/definitions/task.TaskDto"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "Deal created"
+                        "description": "Task created"
                     },
                     "400": {
                         "description": "Bad request"
@@ -138,23 +138,23 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "deal"
+                    "task"
                 ],
-                "summary": "update deal",
+                "summary": "update task",
                 "parameters": [
                     {
-                        "description": "Updating deal",
-                        "name": "deal",
+                        "description": "Updating task",
+                        "name": "task",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/deal.Deal"
+                            "$ref": "#/definitions/task.Task"
                         }
                     }
                 ],
                 "responses": {
                     "204": {
-                        "description": "Deal updated"
+                        "description": "Task updated"
                     },
                     "500": {
                         "description": "Internal server error"
@@ -162,18 +162,18 @@ const docTemplate = `{
                 }
             }
         },
-        "/deals/{id}": {
+        "/tasks/{id}": {
             "get": {
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "deal"
+                    "task"
                 ],
                 "summary": "get by id",
                 "parameters": [
                     {
-                        "description": "Deal id",
+                        "description": "Task id",
                         "name": "id",
                         "in": "body",
                         "required": true,
@@ -186,14 +186,14 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/deal.Deal"
+                            "$ref": "#/definitions/task.Task"
                         }
                     },
                     "400": {
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "Deal not found"
+                        "description": "Task not found"
                     }
                 }
             },
@@ -202,12 +202,12 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "deal"
+                    "task"
                 ],
                 "summary": "delete by id",
                 "parameters": [
                     {
-                        "description": "Deal id",
+                        "description": "Task id",
                         "name": "id",
                         "in": "body",
                         "required": true,
@@ -218,7 +218,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "204": {
-                        "description": "Deal deleted"
+                        "description": "Task deleted"
                     },
                     "500": {
                         "description": "Internal server error"
@@ -226,10 +226,10 @@ const docTemplate = `{
                 }
             }
         },
-        "/items": {
+        "/projects": {
             "get": {
                 "tags": [
-                    "item"
+                    "project"
                 ],
                 "summary": "get all",
                 "responses": {
@@ -237,8 +237,8 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/auth.Item"
+                            "projects": {
+                                "$ref": "#/definitions/auth.Project"
                             }
                         }
                     },
@@ -252,23 +252,23 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "item"
+                    "project"
                 ],
-                "summary": "create item",
+                "summary": "create project",
                 "parameters": [
                     {
                         "description": "create request",
-                        "name": "item",
+                        "name": "project",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/auth.ItemDto"
+                            "$ref": "#/definitions/auth.ProjectDto"
                         }
                     }
                 ],
                 "responses": {
                     "201": {
-                        "description": "Item created"
+                        "description": "Project created"
                     },
                     "400": {
                         "description": "Bad request"
@@ -283,23 +283,23 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "item"
+                    "project"
                 ],
-                "summary": "update item",
+                "summary": "update project",
                 "parameters": [
                     {
                         "description": "Updating user",
-                        "name": "item",
+                        "name": "project",
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/auth.Item"
+                            "$ref": "#/definitions/auth.Project"
                         }
                     }
                 ],
                 "responses": {
                     "204": {
-                        "description": "Item updated"
+                        "description": "Project updated"
                     },
                     "500": {
                         "description": "Internal server error"
@@ -307,18 +307,18 @@ const docTemplate = `{
                 }
             }
         },
-        "/items/{id}": {
+        "/projects/{id}": {
             "get": {
                 "consumes": [
                     "application/json"
                 ],
                 "tags": [
-                    "item"
+                    "project"
                 ],
                 "summary": "get by id",
                 "parameters": [
                     {
-                        "description": "Item id",
+                        "description": "Project id",
                         "name": "id",
                         "in": "body",
                         "required": true,
@@ -331,14 +331,14 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/auth.Item"
+                            "$ref": "#/definitions/auth.Project"
                         }
                     },
                     "400": {
                         "description": "Bad request"
                     },
                     "404": {
-                        "description": "Item not found"
+                        "description": "Project not found"
                     }
                 }
             },
@@ -347,12 +347,12 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "item"
+                    "project"
                 ],
                 "summary": "delete by id",
                 "parameters": [
                     {
-                        "description": "Item id",
+                        "description": "Project id",
                         "name": "id",
                         "in": "body",
                         "required": true,
@@ -363,7 +363,7 @@ const docTemplate = `{
                 ],
                 "responses": {
                     "204": {
-                        "description": "Item deleted"
+                        "description": "Project deleted"
                     },
                     "500": {
                         "description": "Internal server error"
@@ -382,7 +382,7 @@ const docTemplate = `{
                         "description": "OK",
                         "schema": {
                             "type": "array",
-                            "items": {
+                            "projects": {
                                 "$ref": "#/definitions/auth.User"
                             }
                         }
@@ -569,7 +569,7 @@ const docTemplate = `{
                 }
             }
         },
-        "auth.Item": {
+        "auth.Project": {
             "type": "object",
             "required": [
                 "cost",
@@ -596,7 +596,7 @@ const docTemplate = `{
                 }
             }
         },
-        "auth.ItemDto": {
+        "auth.ProjectDto": {
             "type": "object",
             "required": [
                 "cost",
@@ -636,14 +636,14 @@ const docTemplate = `{
                 }
             }
         },
-        "deal.Deal": {
+        "task.Task": {
             "type": "object",
             "required": [
                 "amount",
                 "client_name",
                 "description",
                 "id",
-                "item_id",
+                "project_id",
                 "user_id"
             ],
             "properties": {
@@ -659,7 +659,7 @@ const docTemplate = `{
                 "id": {
                     "type": "integer"
                 },
-                "item_id": {
+                "project_id": {
                     "type": "integer"
                 },
                 "user_id": {
@@ -667,13 +667,13 @@ const docTemplate = `{
                 }
             }
         },
-        "deal.DealDto": {
+        "task.TaskDto": {
             "type": "object",
             "required": [
                 "amount",
                 "client_name",
                 "description",
-                "item_id",
+                "project_id",
                 "user_id"
             ],
             "properties": {
@@ -686,7 +686,7 @@ const docTemplate = `{
                 "description": {
                     "type": "string"
                 },
-                "item_id": {
+                "project_id": {
                     "type": "integer"
                 },
                 "user_id": {
