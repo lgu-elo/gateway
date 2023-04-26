@@ -6,6 +6,7 @@ require (
 	github.com/go-playground/validator/v10 v10.11.2
 	github.com/ilyakaznacheev/cleanenv v1.4.2
 	github.com/lgu-elo/auth v0.0.0-20230426213023-3ef1e0097ef5
+	github.com/lgu-elo/user v0.0.0-20230426215440-d0f4b5843de9
 	github.com/pkg/errors v0.9.1
 	github.com/sirupsen/logrus v1.9.0
 	github.com/stretchr/testify v1.8.2
