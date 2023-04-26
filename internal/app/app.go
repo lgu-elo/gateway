@@ -7,6 +7,7 @@ import (
 	auth "github.com/lgu-elo/gateway/internal/auth"
 	"github.com/lgu-elo/gateway/internal/config"
 	"github.com/lgu-elo/gateway/internal/server"
+	user "github.com/lgu-elo/gateway/internal/user"
 	"github.com/lgu-elo/gateway/pkg/logger"
 	"github.com/sirupsen/logrus"
 	echoSwagger "github.com/swaggo/echo-swagger"
@@ -30,8 +31,8 @@ func CreateApp() fx.Option {
 
 			server.New,
 
-			//fx.Annotate(user.NewClient, fx.As(new(user.Client))),
-			//fx.Annotate(user.NewService, fx.As(new(user.IService))),
+			fx.Annotate(user.NewClient, fx.As(new(user.Client))),
+			fx.Annotate(user.NewService, fx.As(new(user.IService))),
 
 			fx.Annotate(auth.NewClient, fx.As(new(auth.Client))),
 			fx.Annotate(auth.NewService, fx.As(new(auth.IService))),
@@ -42,8 +43,8 @@ func CreateApp() fx.Option {
 			//fx.Annotate(task.NewClient, fx.As(new(task.Client))),
 			//fx.Annotate(task.NewService, fx.As(new(task.IService))),
 
-			//auth.NewHandler,
-			//user.NewHandler,
+			auth.NewHandler,
+			user.NewHandler,
 			//project.NewHandler,
 			//task.NewHandler,
 		),
